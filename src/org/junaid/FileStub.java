@@ -4,11 +4,13 @@ public class FileStub {
 	
 	private int inodeNumber;
 	private String fileName;
+	private boolean isDir;
 	
-	public FileStub(String fileNam, int inodeNum ){
+	public FileStub(String fileNam, int inodeNum, boolean isDir ){
 		
 		fileName = fileNam;
 		inodeNumber = inodeNum;
+		this.isDir = isDir;
 	}
 	
 	public String getName(){
@@ -22,6 +24,9 @@ public class FileStub {
 	}
 	public void setinodeNumber(int inodeNum){
 		inodeNumber = inodeNum;
+	}
+	public boolean isDir(){
+		return this.isDir;
 	}
 	
 
