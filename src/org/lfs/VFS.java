@@ -18,8 +18,19 @@ import java.util.StringTokenizer;
 public class VFS {
 
 	private String vfsFileName;
+	private static VFS vfs = null;
+	
+	public static VFS getVFSInstance(){
+		
+		if (vfs == null){	
+			vfs = new VFS("vfsFile");
+		}
+		
+		return vfs;
+		
+	}
 
-	public VFS(String fileName){
+	private VFS(String fileName){
 
 		vfsFileName = fileName;
 
@@ -53,7 +64,8 @@ public class VFS {
 				// TODO DirectoryManager.initialize(directoryInode);
 				// TODO CheckpointManager.initialize(checkpoint);
 
-					InodeManager.initialize(inodesList);
+				InodeManager.initialize(inodesList);
+				
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

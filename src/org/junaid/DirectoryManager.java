@@ -12,7 +12,7 @@ public class DirectoryManager {
 	public DirectoryManager(){
 		
 		directoryMap = new HashMap<>();
-		currentWorkingDirectory = "/";
+		currentWorkingDirectory = "root";
 		
 	}
 	
@@ -21,7 +21,7 @@ public class DirectoryManager {
 		DirectoryManager dm = new DirectoryManager();
 		System.out.println( dm.getWorkingDirectory() );
 		
-		String data = "/=0:file1:1+0:newFile:2+1:dirA:0\ndirA=0:asfs:4+0:file4:5\n";
+		String data = "root=0:file1:1+0:newFile:2+1:dirA:0\ndirA=0:asfs:4+0:file4:5\n";
 		
 		dm.loadHashMap(data);
 		dm.writeHashMap();
@@ -47,19 +47,52 @@ public class DirectoryManager {
 		return 0;
 	}
 	
-	public int deleteFile(){
-		return 0;
+	public int deleteFile(String fileName){
+		
+		try {
+			ArrayList<FileStub> tempFs = directoryMap.get(currentWorkingDirectory);
+			
+			for (FileStub tempfs : tempFs){
+				
+				if (tempfs.getName().equals(fileName)){					
+					tempFs.remove(tempfs);
+
+				}
+			}
+			return 1;
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			return 0;
+		}
 		
 	}
 	
-	public int deleteDirecory(){
-		return 0;
+	public int deleteDirecory(String directoryName){
+		
+		try {
+			directoryMap.remove(directoryName);
+			
+			
+			return 1;
+		} catch (Exception e) {
+			// TODO: handle exception
+			return 0;
+		}
 		
 	}
 	
-	public int changeWorkingDirectory(){
+	public int changeWorkingDirectory(String directoryName){
 		
-		return 0;
+		try{
+			directoryMap.get(directoryName);
+			currentWorkingDirectory = directoryName;
+			return 1;
+		}catch(Exception e){
+			
+			return 0;
+		}
+		
 	}
 
 	public String getWorkingDirectory(){
@@ -72,7 +105,35 @@ public class DirectoryManager {
 		return 0;
 	}
 
-	private boolean isValidPath(){
+	private boolean isValidPath(String path){
+		
+		String pathToken[] = path.split("/");
+		
+		if (pathToken.length == 0){
+			// current dir create here
+			return true;
+		}
+		else{
+			
+			boolean state = false;
+			for (int i=0;i<pathToken.length; i ++){
+				
+			    
+				ArrayList<FileStub> tempFS = directoryMap.get(pathToken[i]);
+				
+				for (FileStub tempfs : tempFS){
+					
+					if (tempfs.getName() == pathToken[i+1]){
+						
+					}
+					
+				}
+			
+			
+			}
+			
+		}
+		
 		
 		return false;
 	}
