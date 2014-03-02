@@ -1,15 +1,38 @@
 package org.lfs;
 
+import java.util.ArrayList;
+import java.util.List;
+import static org.lfs.Constants.*;
+
 public class InodeManager {
 	
-	int allocateInode(int blockNumber){
+	private static List<Inode> inodes;
+	
+	int allocateInode(int fileBlockNumber){
 		
-		return 0;
+		int inodeNumber = getFirstFreeInode();
+		Inode inodeToAllocate = inodes.get(inodeNumber);
+		inodeToAllocate.allocate(fileBlockNumber);
 	}
 	
-	public int getFirstFreeInode(){
+	private int getFirstFreeInode(){
 		
-		return 10;
+		for(int i = 0; i < inodes.size(); i++){
+			
+			if(inodes.get(i).getPointer(blockPointersPerInode - 1) == 0){
+				return i;
+			}
+		}
+		System.out.println("No free inode");
+		return -1;
+	}
+	
+	public static void initialize(List<List<Integer>> inodesList){
+		
+		assert inodesList.size() == Constants.numberOfInodes : "number of inodes not consistent";
+		
+		
+		inodes = inodesList;
 	}
 
 }
