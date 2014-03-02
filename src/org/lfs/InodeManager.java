@@ -14,6 +14,8 @@ public class InodeManager {
 //		Inode inodeToAllocate = inodes.get(inodeNumber);
 //		inodeToAllocate.allocate(fileBlockNumber);
 //	}
+
+	
 	
 	private int getFirstFreeInode(){
 		
