@@ -10,7 +10,7 @@ public class DataBlockManager {
 	
 	public DataBlockManager(){
 		
-		freeDataBlockIndex = Constants.startingDataBlockPosition;		
+		freeDataBlockIndex = Constants.startOfDataBlocks;		
 	}
 	
 	

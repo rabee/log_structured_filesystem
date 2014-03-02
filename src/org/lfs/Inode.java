@@ -16,6 +16,10 @@ public class Inode{
 		
 	}
 	
+	public void allocate(int fileBlockNumber){
+		
+	}
+	
 	public int getPointer(int index){
 		
 		assert index < 4 && index >=0 : "Incorrect index passed";

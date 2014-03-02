@@ -8,12 +8,12 @@ public class InodeManager {
 	
 	private static List<Inode> inodes;
 	
-//	int allocateInode(int fileBlockNumber){
-//		
-//		int inodeNumber = getFirstFreeInode();
-//		Inode inodeToAllocate = inodes.get(inodeNumber);
-//		inodeToAllocate.allocate(fileBlockNumber);
-//	}
+	int allocateInode(int fileBlockNumber){
+		
+		int inodeNumber = getFirstFreeInode();
+		Inode inodeToAllocate = inodes.get(inodeNumber);
+		inodeToAllocate.allocate(fileBlockNumber);
+}
 
 	
 	
